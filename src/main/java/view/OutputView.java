@@ -46,7 +46,7 @@ public class OutputView {
         for (Map.Entry<Menu, Integer> entry : orderedMenus.getOrderedMenus().entrySet()) {
             String name = entry.getKey().getName();
             String count = entry.getValue().toString();
-            String price = Integer.toString(entry.getKey().getPrice());
+            String price = Double.toString(entry.getKey().calculateAmount(entry.getValue()));
             String message = String.join(" ", name, count, price);
             System.out.println(message);
         }
@@ -54,5 +54,9 @@ public class OutputView {
 
     public static void printTotalAmount(double amount) {
         System.out.printf("%.2f원%s", amount, newLine);
+    }
+
+    public static void printExceptionMessage(String message) {
+        System.out.println(message);
     }
 }

@@ -4,7 +4,6 @@ import domain.menu.Menu;
 import domain.menu.OrderedMenus;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class TableRepository {
     private static final List<Table> tables = new ArrayList<>();
@@ -34,14 +33,14 @@ public class TableRepository {
                 .orElseThrow(() -> new IllegalArgumentException("해당 번호에 해당되는 테이블이 없습니다."));
     }
 
-    public static void updateTableBy(int number, Menu menu, int count) {
-        Table table = getTableBy(number);
-        OrderedMenus updatedMenus = TableRepository.orderedMenus.get(table).addMenu(menu, count);
+    public static void updateTableMenu(Table table, Menu menu, int count) {
+        OrderedMenus updatedMenus = orderedMenus.get(table).addMenu(menu, count);
 
         orderedMenus.put(table, updatedMenus);
     }
 
-    public static Map<Table, OrderedMenus> getOrderedMenus() {
-        return orderedMenus;
+    public static OrderedMenus getOrderedMenusBy(int tableNumber) {
+        Table table = getTableBy(tableNumber);
+        return orderedMenus.get(table);
     }
 }

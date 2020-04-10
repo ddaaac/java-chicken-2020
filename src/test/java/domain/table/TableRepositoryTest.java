@@ -37,17 +37,9 @@ class TableRepositoryTest {
         Menu menu = MenuRepository.menus().get(0);
         expected.put(menu, 20);
 
-        TableRepository.updateTableBy(1, menu, 20);
+        TableRepository.updateTableMenu(new Table(1), menu, 20);
 
-        assertThat(TableRepository.getOrderedMenus().get(new Table(1)))
+        assertThat(TableRepository.getOrderedMenusBy(1))
                 .isEqualTo(OrderedMenus.empty().addMenu(menu, 20));
-    }
-
-    @Test
-    void updateTableInvalidNumber() {
-        assertThatThrownBy(() -> {
-            TableRepository.updateTableBy(10, MenuRepository.menus().get(0), 20);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("해당 번호에 해당되는 테이블이 없습니다.");
     }
 }

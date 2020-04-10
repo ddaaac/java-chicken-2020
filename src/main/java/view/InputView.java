@@ -33,8 +33,8 @@ public class InputView {
         return nextInt();
     }
 
-    public static int inputCashOrCard(Table table) {
-        System.out.printf("%d번 테이블의 결제를 진행합니다.%s", table.getNumber(), newLine);
+    public static int inputCashOrCard(int tableNumber) {
+        System.out.printf("%d번 테이블의 결제를 진행합니다.%s", tableNumber, newLine);
         System.out.println("신용카드는 1번, 현금 결제는 2번");
         return nextInt();
     }
