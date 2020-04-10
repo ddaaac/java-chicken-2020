@@ -29,7 +29,6 @@ public class OrderedMenus {
         validateMenuCount(totalCount);
 
         orderedMenus.put(menu, totalCount);
-
         return new OrderedMenus(orderedMenus);
     }
 
