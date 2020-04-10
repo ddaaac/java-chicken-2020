@@ -45,8 +45,8 @@ class OrderedMenusTest {
         Map<Menu, Integer> notEmptyMenus = new HashMap<>();
         notEmptyMenus.put(menu, 10);
 
-        return Stream.of(Arguments.of(new HashMap<>(), true),
-                Arguments.of(notEmptyMenus, false));
+        return Stream.of(Arguments.of(new HashMap<>(), false),
+                Arguments.of(notEmptyMenus, true));
     }
 
     @Test

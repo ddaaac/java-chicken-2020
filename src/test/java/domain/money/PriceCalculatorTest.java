@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PriceCalculatorTest {
     @Test
@@ -38,5 +39,14 @@ class PriceCalculatorTest {
         PriceCalculator priceCalculator = PriceCalculator.from(orderedMenus, true);
         assertThat(priceCalculator.calculatePrice())
                 .isEqualTo((17000 * 14 + 3000 - 10000) * 0.95);
+    }
+
+    @Test
+    void fromNotOrderedTable() {
+        OrderedMenus orderedMenus = new OrderedMenus(new HashMap<>());
+        assertThatThrownBy(() -> {
+            PriceCalculator.from(orderedMenus, true);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("주문 내역이 없는 테이블입니다");
     }
 }

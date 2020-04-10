@@ -39,7 +39,7 @@ public class OrderedMenus {
     }
 
     public boolean isOrdered() {
-        return orderedMenus.isEmpty();
+        return !orderedMenus.isEmpty();
     }
 
     public double calculateTotalAmount() {

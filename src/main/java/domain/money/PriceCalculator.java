@@ -15,6 +15,8 @@ public class PriceCalculator {
     }
 
     public static PriceCalculator from(OrderedMenus orderedMenus, boolean isCash) {
+        validateOrdered(orderedMenus);
+
         List<DiscountPolicy> discountPolicies = new ArrayList<>();
         discountPolicies.add(new ChickenDiscount(orderedMenus.calculateChickenCount()));
         if (isCash) {
@@ -22,6 +24,12 @@ public class PriceCalculator {
         }
 
         return new PriceCalculator(discountPolicies, orderedMenus.calculateTotalAmount());
+    }
+
+    private static void validateOrdered(OrderedMenus orderedMenus) {
+        if (!orderedMenus.isOrdered()) {
+            throw new IllegalArgumentException("주문 내역이 없는 테이블입니다");
+        }
     }
 
     public double calculatePrice() {
