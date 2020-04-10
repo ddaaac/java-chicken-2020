@@ -21,7 +21,7 @@ public class Table {
         this(number, new HashMap<>());
     }
 
-    public Table addMenu(Menu menu, int count) {
+    Table addMenu(Menu menu, int count) {
         Map<Menu, Integer> orderedMenus = new HashMap<>(this.orderedMenus);
         int totalCount = count;
 
@@ -39,6 +39,10 @@ public class Table {
 
     public boolean isOrdered() {
         return orderedMenus.isEmpty();
+    }
+
+    public boolean isTableOf(int number) {
+        return this.number == number;
     }
 
     private void validateMenuCount(int totalCount) {
