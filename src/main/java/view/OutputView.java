@@ -1,8 +1,8 @@
 package view;
 
+import controller.dto.TableDto;
 import domain.menu.Menu;
 import domain.menu.OrderedMenus;
-import domain.table.Table;
 
 import java.util.List;
 import java.util.Map;
@@ -12,13 +12,14 @@ public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
     private static final String TABLE_FORMAT = "| %s |";
     private static final String BOTTOM_LINE = "└ ─ ┘";
+    private static final String BOTTOM_ORDERED_LINE = "└ ₩ ┘";
 
-    public static void printTables(final List<Table> tables) {
+    public static void printTables(final List<TableDto> tables) {
         System.out.println("## 테이블 목록");
         final int size = tables.size();
         printLine(TOP_LINE, size);
         printTableNumbers(tables);
-        printLine(BOTTOM_LINE, size);
+        printTableBottomLine(tables);
     }
 
     public static void printMenus(final List<Menu> menus) {
@@ -34,11 +35,25 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printTableNumbers(final List<Table> tables) {
-        for (final Table table : tables) {
-            System.out.printf(TABLE_FORMAT, table);
+    private static void printTableNumbers(final List<TableDto> tables) {
+        for (final TableDto table : tables) {
+            System.out.printf(TABLE_FORMAT, table.getNumber());
         }
         System.out.println();
+    }
+
+    private static void printTableBottomLine(final List<TableDto> tables) {
+        for (final TableDto table : tables) {
+            System.out.print(getProperBottomLine(table));
+        }
+        System.out.println();
+    }
+
+    private static String getProperBottomLine(TableDto table) {
+        if (table.isOrdered()) {
+            return BOTTOM_ORDERED_LINE;
+        }
+        return BOTTOM_LINE;
     }
 
     public static void printOrder(final OrderedMenus orderedMenus) {

@@ -1,5 +1,6 @@
 package controller;
 
+import controller.dto.TableDto;
 import domain.command.CommandType;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
@@ -37,7 +38,7 @@ public class ChickenController {
     }
 
     private void order() {
-        OutputView.printTables(TableRepository.tables());
+        OutputView.printTables(TableDto.list(TableRepository.orderedMenus()));
         int tableNumber = InputView.inputTableNumber();
         Table table = TableRepository.getTableBy(tableNumber);
 
@@ -49,7 +50,7 @@ public class ChickenController {
     }
 
     private void calculate() {
-        OutputView.printTables(TableRepository.tables());
+        OutputView.printTables(TableDto.list(TableRepository.orderedMenus()));
         int tableNumber = InputView.inputTableNumber();
 
         OrderedMenus menus = TableRepository.getOrderedMenusBy(tableNumber);

@@ -26,6 +26,10 @@ public class TableRepository {
         return Collections.unmodifiableList(tables);
     }
 
+    public static Map<Table, OrderedMenus> orderedMenus() {
+        return Collections.unmodifiableMap(orderedMenus);
+    }
+
     public static Table getTableBy(int number) {
         return tables().stream()
                 .filter(table -> table.isTableOf(number))
