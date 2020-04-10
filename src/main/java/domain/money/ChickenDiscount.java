@@ -1,18 +1,17 @@
 package domain.money;
 
-import domain.menu.OrderedMenus;
-
-public class ChickenDiscount extends Discount {
+public class ChickenDiscount implements DiscountPolicy {
     private static final int DISCOUNT_AMOUNT = 10000;
     private static final int DISCOUNT_UNIT = 10;
 
-    public ChickenDiscount(OrderedMenus orderedMenus) {
-        super(orderedMenus);
+    private int chickenCount;
+
+    public ChickenDiscount(int chickenCount) {
+        this.chickenCount = chickenCount;
     }
 
     @Override
-    double calculateDiscountBy(OrderedMenus orderedMenus) {
-        return orderedMenus.calculateTotalAmount() -
-                Math.floor(orderedMenus.calculateChickenCount() / DISCOUNT_UNIT) * DISCOUNT_AMOUNT;
+    public double calculateDiscountAmount(double amount) {
+        return amount - Math.floor(chickenCount / DISCOUNT_UNIT) * DISCOUNT_AMOUNT;
     }
 }

@@ -9,11 +9,11 @@ public class InputView {
     private static final String newLine = System.lineSeparator();
 
     public static int inputCommandNumber() {
-        String message = String.join("## 메인 화면" + newLine
-                + "1 - 주문 등록" + newLine
-                + "2 - 결제하기" + newLine
-                + "3 - 프로그램 종료" + newLine + newLine
-                + "## 원하는 기능을 선택하세요." + newLine);
+        String message = String.join(newLine, "## 메인 화면",
+                "1 - 주문 등록",
+                "2 - 결제하기",
+                "3 - 프로그램 종료",
+                "## 원하는 기능을 선택하세요.");
         System.out.println(message);
         return nextInt();
     }
