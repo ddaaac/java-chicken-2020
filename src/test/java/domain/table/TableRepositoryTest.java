@@ -2,6 +2,7 @@ package domain.table;
 
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
+import domain.menu.OrderedMenus;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -33,12 +34,13 @@ class TableRepositoryTest {
     @Test
     void updateTable() {
         Map<Menu, Integer> expected = new HashMap<>();
-        expected.put(MenuRepository.menus().get(0), 20);
+        Menu menu = MenuRepository.menus().get(0);
+        expected.put(menu, 20);
 
-        Table table = new Table(1, expected);
+        TableRepository.updateTableBy(1, menu, 20);
 
-        assertThat(TableRepository.updateTableBy(1, MenuRepository.menus().get(0), 20))
-                .isEqualTo(table);
+        assertThat(TableRepository.getOrderedMenus().get(new Table(1)))
+                .isEqualTo(OrderedMenus.empty().addMenu(menu, 20));
     }
 
     @Test
