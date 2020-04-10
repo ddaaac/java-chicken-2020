@@ -57,6 +57,10 @@ public class OrderedMenus {
                 .reduce(0, Integer::sum);
     }
 
+    public Map<Menu, Integer> getOrderedMenus() {
+        return orderedMenus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

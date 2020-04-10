@@ -1,11 +1,14 @@
 package view;
 
 import domain.menu.Menu;
+import domain.menu.OrderedMenus;
 import domain.table.Table;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
+    private static final String newLine = System.lineSeparator();
     private static final String TOP_LINE = "┌ ─ ┐";
     private static final String TABLE_FORMAT = "| %s |";
     private static final String BOTTOM_LINE = "└ ─ ┘";
@@ -36,5 +39,20 @@ public class OutputView {
             System.out.printf(TABLE_FORMAT, table);
         }
         System.out.println();
+    }
+
+    public static void printOrder(final OrderedMenus orderedMenus) {
+        System.out.println("메뉴 수량 금액");
+        for (Map.Entry<Menu, Integer> entry : orderedMenus.getOrderedMenus().entrySet()) {
+            String name = entry.getKey().getName();
+            String count = entry.getValue().toString();
+            String price = Integer.toString(entry.getKey().getPrice());
+            String message = String.join(" ", name, count, price);
+            System.out.println(message);
+        }
+    }
+
+    public static void printTotalAmount(double amount) {
+        System.out.printf("%.2f원%s", amount, newLine);
     }
 }
