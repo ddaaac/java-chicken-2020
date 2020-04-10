@@ -42,6 +42,21 @@ public class OrderedMenus {
         return orderedMenus.isEmpty();
     }
 
+    public double calculateTotalAmount() {
+        return orderedMenus.keySet()
+                .stream()
+                .map(menu -> menu.calculateAmount(orderedMenus.get(menu)))
+                .reduce(0D, Double::sum);
+    }
+
+    public int calculateChickenCount() {
+        return orderedMenus.keySet()
+                .stream()
+                .filter(Menu::isChicken)
+                .map(orderedMenus::get)
+                .reduce(0, Integer::sum);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,10 +1,16 @@
 package domain.money;
 
-public class CashDiscount implements DiscountPolicy {
+import domain.menu.OrderedMenus;
+
+public class CashDiscount extends Discount {
     private static final double DISCOUNT_PERCENT = 0.05;
 
+    public CashDiscount(OrderedMenus orderedMenus) {
+        super(orderedMenus);
+    }
+
     @Override
-    public double calculateDiscountAmount(double amount) {
-        return amount * (1 - DISCOUNT_PERCENT);
+    double calculateDiscountBy(OrderedMenus orderedMenus) {
+        return orderedMenus.calculateTotalAmount() * (1 - DISCOUNT_PERCENT);
     }
 }

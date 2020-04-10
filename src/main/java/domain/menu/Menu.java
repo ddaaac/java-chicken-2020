@@ -19,6 +19,14 @@ public class Menu {
         return this.number == number;
     }
 
+    public boolean isChicken() {
+        return category == Category.CHICKEN;
+    }
+
+    public double calculateAmount(int count) {
+        return price * count;
+    }
+
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";
